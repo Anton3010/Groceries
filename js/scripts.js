@@ -1,37 +1,14 @@
-var groceries = [];
-$(document).ready(function()
-{
-  $("form#grocery").submit(function(event)
-  {
+
+$(document).ready(function(){
+  $(".cart").submit(function(event){
     event.preventDefault();
-    groceries.push($(".food").val().toUpperCase());
-
-    groceries.sort();
-
-    console.log(groceries);
+    $(".cart").hide();
+    var items = $("#item").val().split(", ").sort();
+    var itemsUpperCase = items.map(function(item){
+      return item.toUpperCase();
+    })
+    itemsUpperCase.forEach(function(item){
+      $(".result").append("<li>" + item + "</li>");
     });
-
-  $("form#showList").submit(function(event)
-    {
-      event.preventDefault();
-
-        //console.log(groceries);
-        for (x=0; x<groceries.length; x++)
-        {
-          $(".items1").append("<li>"+groceries[x]+"</li><br>")
-          //console.log(groceries);
-
-        }
-
-    });
-    /*
-    groceries.forEach(function(items){
-      var x=0;
-      items[x].toUpperCase();
-      x++;
-    });
-
-    console.log(groceries);
-    */
-
+  });
 });
